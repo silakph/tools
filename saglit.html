@@ -653,6 +653,7 @@ function occurrences(){
   out.sort(function(a,c){return a.s-c.s;});
   return out;
 }
+function occKey(o){return o.b.id+'@'+o.s;}
 function currentOcc(m){
   var o=occurrences();
   for(var i=0;i<o.length;i++)if(m>=o[i].s&&m<o[i].s+o[i].dur)return o[i];
@@ -700,8 +701,8 @@ var faceKey='';
 
 function renderFace(){
   var m=nowMin(),w=windowStart(m),cur=currentBlock(m);
-  var L=occurrences(),curO=currentOcc(m);
-  var key=w+'|'+night+'|'+(curO?curO.b.id+curO.s:'-')+'|'+L.map(function(o){return o.b.id+o.s+o.dur+o.b.icon+o.b.color;}).join(',');
+  var L=occurrences(),curO=currentOcc(m),curKey=curO?occKey(curO):'';
+  var key=w+'|'+night+'|'+(curO?occKey(curO):'-')+'|'+L.map(function(o){return o.b.id+o.s+o.dur+o.b.icon+o.b.color;}).join(',');
   if(key===faceKey)return;
   faceKey=key;
   var g='';
@@ -713,7 +714,7 @@ function renderFace(){
   for(var i=0;i<L.length;i++){
     var o=L[i],b=o.b;
     var pieces=piecesIn(o,w);
-    var active=(curO===o);
+    var active=(curKey!==''&&occKey(o)===curKey);
     for(var j=0;j<pieces.length;j++){
       var p0=pieces[j][0],p1=pieces[j][1];
       var a1=ang(p0),a2=ang(p1);
@@ -847,9 +848,8 @@ function durText(m){
 }
 var schedKey='';
 var CHECK='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5 10-11"/></svg>';
-function occKey(o){return o.b.id+'@'+o.s;}
 function renderSchedule(force){
-  var m=nowMin(),curO=currentOcc(m),L=dayOccs();
+  var m=nowMin(),curO=currentOcc(m),L=dayOccs(),curKey=curO?occKey(curO):'';
   var key=(curO?occKey(curO):'-')+'|'+L.map(function(o){
     return occKey(o)+o.dur+o.b.icon+o.b.color+o.b.en+(isPastOcc(o,m)?'1':'0')+(state.done[occKey(o)]?'d':'');
   }).join(',');
@@ -858,7 +858,7 @@ function renderSchedule(force){
   var h='';
   for(var i=0;i<L.length;i++){
     var o=L[i],b=o.b,k=occKey(o),done=!!state.done[k];
-    var cls=(curO===o?'is-now ':'')+(isPastOcc(o,m)?'is-past ':'')+(done?'is-done':'');
+    var cls=(curKey!==''&&occKey(o)===curKey?'is-now ':'')+(isPastOcc(o,m)?'is-past ':'')+(done?'is-done':'');
     h+='<button class="ev '+cls+'" type="button" data-k="'+k+'" data-id="'+b.id+'" style="border-left-color:'+b.color+'">'+
        '<span class="evic" style="background:'+b.color+'">'+svgIcon(b.icon,20)+'</span>'+
        '<span class="evname">'+esc(label(b))+'</span>'+
@@ -868,10 +868,12 @@ function renderSchedule(force){
        '</button>';
   }
   scheduleEl.innerHTML=h;
+  /* the now band already shows the current activity, so the list leads with what's next */
   var act=scheduleEl.querySelector('.is-now');
-  if(act&&scheduleEl.scrollHeight>scheduleEl.clientHeight+4){
+  var target=act?(act.nextElementSibling||act):scheduleEl.querySelector('.ev:not(.is-past)');
+  if(target&&scheduleEl.scrollHeight>scheduleEl.clientHeight+4){
     var maxTop=scheduleEl.scrollHeight-scheduleEl.clientHeight;
-    scheduleEl.scrollTop=Math.max(0,Math.min(maxTop,act.offsetTop-4));
+    scheduleEl.scrollTop=Math.max(0,Math.min(maxTop,target.offsetTop-4));
   }
   updateFades();
 }

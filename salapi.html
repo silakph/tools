@@ -8066,14 +8066,6 @@
       </div>
     </button>
 
-    <!-- Smart Insights -->
-    <div class="insights-card" id="insightsCard" style="display:none;">
-      <div class="insights-head">
-        <span>Smart Insights</span>
-      </div>
-      <div id="insightsList"></div>
-    </div>
-
     <!-- Goals Progress — horizontal scroll of goal cards -->
     <div class="home-section-head" id="goalsHead" style="display:none;">
       <span class="title">Goals Progress</span>
@@ -9391,7 +9383,7 @@
   // Bumped on every deploy — used by the update-checker to detect when a
   // newer HTML has landed on GitHub Pages so users can refresh without
   // force-closing the PWA. Format: YYYY-MM-DD.NN (NN increments per day).
-  const APP_VERSION = '2026-08-10.68';
+  const APP_VERSION = '2026-08-10.69';
 
   const REMEMBER_KEY = 'silak-salapi-last-email';      // client-only, pre-fills email on login
 
@@ -18894,25 +18886,10 @@
     `;
   }
 
-  // =========================================================================
-  // SMART INSIGHTS — auto-computed observations shown on home
-  // =========================================================================
-  function renderInsights(user) {
-    const card = document.getElementById('insightsCard');
-    const list = document.getElementById('insightsList');
-    const items = computeInsights(user);
-    if (items.length === 0) { card.style.display = 'none'; return; }
-    list.innerHTML = items.map(it => `
-      <div class="insight-item">
-        <div class="insight-icon ${it.tone}">${it.icon}</div>
-        <div class="insight-body">
-          <p class="insight-title">${it.title}</p>
-          ${it.sub ? `<p class="insight-sub">${it.sub}</p>` : ''}
-        </div>
-      </div>
-    `).join('');
-    card.style.display = 'block';
-  }
+  // Smart Insights card was removed from Home as part of nav simplification.
+  // Keep the renderer as a no-op so any legacy caller sites don't crash. The
+  // underlying computeInsights() stays in case we re-surface it elsewhere.
+  function renderInsights(_user) { /* removed */ }
 
   // Returns 0-3 highest-priority insights derived from the user's data
   function computeInsights(user) {

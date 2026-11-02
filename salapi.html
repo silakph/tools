@@ -6327,120 +6327,6 @@
     line-height: 1.5;
     margin-bottom: 20px;
   }
-  /* Section headers inside Wallets screen — separate Cash from Credit */
-  .wallets-section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin: 24px 0 10px;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .wallets-section-head:first-of-type { margin-top: 8px; }
-  .wallets-section-head .section-sub {
-    font-family: 'Fraunces', serif;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.1px;
-    text-transform: none;
-    color: var(--navy);
-  }
-  .wallets-section-head .section-sub.credit { color: var(--error); }
-  /* Credit tile — looks like a wallet tile but with a credit utilization bar
-     at the bottom. Taps open the loan detail (which we already have). */
-  .credit-tile {
-    background: var(--white);
-    border: 1.5px solid var(--sand);
-    border-radius: 20px;
-    padding: 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: border-color 0.15s, transform 0.15s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .credit-tile:hover  { border-color: var(--muted); }
-  .credit-tile:active { transform: scale(0.99); }
-  .credit-tile .head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
-  }
-  .credit-tile .icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: grid; place-items: center;
-    background: rgba(214, 69, 69, 0.10);
-    color: var(--error);
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .credit-tile .name {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--navy);
-    letter-spacing: -0.2px;
-  }
-  .credit-tile .sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-  .credit-tile .balance-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 8px;
-  }
-  .credit-tile .balance-row .amt {
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--error);
-  }
-  .credit-tile .balance-row .min {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 600;
-  }
-  .credit-tile .util-bar {
-    height: 6px;
-    background: var(--sand);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .credit-tile .util-bar > div {
-    height: 100%;
-    background: linear-gradient(90deg, var(--yellow), var(--error));
-    border-radius: 3px;
-    transition: width 0.3s ease;
-  }
-  .credit-tile .util-label {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 6px;
-  }
-  /* Ghost add-credit button — same shape as add-wallet but muted */
-  .wallet-add-btn.ghost {
-    background: transparent;
-    border: 1.5px dashed var(--muted);
-    color: var(--muted);
-  }
-  .wallet-add-btn.ghost:hover {
-    border-color: var(--navy);
-    color: var(--navy);
-    background: var(--cream-2);
-  }
   .wallets-total {
     background: linear-gradient(135deg, var(--navy), #14345a);
     color: var(--cream);
@@ -7488,11 +7374,26 @@
       <button class="drawer-item" type="button" data-nav="transactions">
         <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18l2-1.5L10 21l2-1.5L14 21l2-1.5L18 21V3z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span> Transactions
       </button>
+      <button class="drawer-item" type="button" data-nav="income-view">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></span> Sahod at Kita
+      </button>
       <button class="drawer-item" type="button" data-nav="budget-view">
         <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Budget
       </button>
       <button class="drawer-item" type="button" data-nav="savings-view">
-        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12c0 3-2.5 6-7 6-1 0-2-.1-3-.4L7 19v-2.5C4.5 15.5 3 13.9 3 12c0-3 3-6 8-6 1.3 0 2.6.3 3.7.7L18 5v3.3c1.2 1 2 2.3 2 3.7z"/><circle cx="15" cy="11" r=".8" fill="currentColor" stroke="none"/><path d="M9 10h3"/></svg></span> Ipon &amp; Sinking Funds
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12c0 3-2.5 6-7 6-1 0-2-.1-3-.4L7 19v-2.5C4.5 15.5 3 13.9 3 12c0-3 3-6 8-6 1.3 0 2.6.3 3.7.7L18 5v3.3c1.2 1 2 2.3 2 3.7z"/><circle cx="15" cy="11" r=".8" fill="currentColor" stroke="none"/><path d="M9 10h3"/></svg></span> Ipon
+      </button>
+      <button class="drawer-item" type="button" data-nav="loans">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2"/><line x1="2" y1="11" x2="22" y2="11"/><line x1="6" y1="15.5" x2="10" y2="15.5"/></svg></span> Utang at Pautang
+      </button>
+      <button class="drawer-item" type="button" data-nav="networth">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><polyline points="4 17 9 12 13 15 20 8"/><polyline points="15 8 20 8 20 13"/></svg></span> Net worth
+      </button>
+      <button class="drawer-item" type="button" data-nav="calendar">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></span> Calendar
+      </button>
+      <button class="drawer-item" type="button" data-nav="review">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="11"/><line x1="3" y1="20" x2="21" y2="20"/></svg></span> Reports
       </button>
     </nav>
     <div class="drawer-brand">
@@ -8066,6 +7967,14 @@
       </div>
     </button>
 
+    <!-- Smart Insights -->
+    <div class="insights-card" id="insightsCard" style="display:none;">
+      <div class="insights-head">
+        <span>Smart Insights</span>
+      </div>
+      <div id="insightsList"></div>
+    </div>
+
     <!-- Goals Progress — horizontal scroll of goal cards -->
     <div class="home-section-head" id="goalsHead" style="display:none;">
       <span class="title">Goals Progress</span>
@@ -8080,6 +7989,30 @@
     </div>
     <div class="recent-tx-list" id="recentTxList" style="display:none;"></div>
 
+    <!-- Net Worth footer — big final card -->
+    <button type="button" class="nw-footer-card" id="nwFooterCard" style="display:none;" data-nav="networth">
+      <div class="nwf-head">
+        <span class="nwf-title">Net Worth</span>
+        <span class="nwf-arrow">→</span>
+      </div>
+      <div class="nwf-body">
+        <div>
+          <div class="nwf-val" id="nwfVal">₱0</div>
+          <div class="nwf-delta" id="nwfDelta">Tap for breakdown</div>
+        </div>
+        <svg class="nwf-spark" id="nwfSpark" viewBox="0 0 90 40" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="nwf-split">
+        <div class="nwf-item">
+          <div class="lbl">Total Assets</div>
+          <div class="val positive" id="nwfAssets">₱0</div>
+        </div>
+        <div class="nwf-item">
+          <div class="lbl">Total Liabilities</div>
+          <div class="val negative" id="nwfLiab">₱0</div>
+        </div>
+      </div>
+    </button>
 
     <!-- Coming Up pill lives up top now, right after the update banner. -->
   </section>
@@ -8253,23 +8186,7 @@
       No wallets yet. Add your first one below to start tracking balances.
     </div>
 
-    <!-- Cash accounts section — normal wallets (GCash, Bank, Cash) -->
-    <div class="wallets-section-head" id="cashSectionHead" style="display:none;">
-      <span>Cash accounts</span>
-      <span class="section-sub" id="cashSectionTotal">—</span>
-    </div>
     <div id="walletsList"></div>
-
-    <!-- Credit section — revolving credit lines (SPayLater, cards) and
-         fixed-term loans. Tapping a tile opens the loan detail view. -->
-    <div class="wallets-section-head" id="creditSectionHead" style="display:none;">
-      <span>Credit</span>
-      <span class="section-sub" id="creditSectionTotal">—</span>
-    </div>
-    <div id="creditList"></div>
-    <button type="button" class="wallet-add-btn ghost" id="addCreditBtn" style="margin-top:12px;">
-      + Add credit line
-    </button>
   </section>
 
   <!-- ============ WALLET EDIT ============ -->
@@ -8447,9 +8364,11 @@
 
     <p class="loans-intro" id="loansIntro">Track what you owe (utang) and what others owe you (pautang) — all in one place.</p>
 
-    <!-- Filter tabs — only utang now (pautang feature removed) -->
-    <div class="loans-filter-tabs" id="loansFilterTabs" style="display:none;">
-      <button type="button" class="loans-filter-btn active" data-loan-filter="payable">Utang</button>
+    <!-- Filter tabs — All / Utang / Pautang -->
+    <div class="loans-filter-tabs" id="loansFilterTabs">
+      <button type="button" class="loans-filter-btn active" data-loan-filter="all">All</button>
+      <button type="button" class="loans-filter-btn" data-loan-filter="payable">Utang</button>
+      <button type="button" class="loans-filter-btn" data-loan-filter="receivable">Pautang</button>
     </div>
 
     <div class="expenses-empty" id="loansEmpty">
@@ -9044,13 +8963,15 @@
             <option value="nav-transfer-form">Open transfer form</option>
             <option value="nav-coming-up">Open Coming Up (bills due)</option>
             <option value="nav-savings">Open Ipon (savings)</option>
-            <option value="nav-wallets">Open Pitaka (wallets)</option>
+            <option value="nav-loans">Open Loans</option>
+            <option value="nav-assets">Open Net Worth</option>
           </optgroup>
           <optgroup label="One-tap log">
             <option value="template-expense">Log an expense (template)</option>
             <option value="template-income">Log income (template)</option>
             <option value="template-saving">Add to a savings goal (template)</option>
             <option value="template-transfer">Move money between wallets (template)</option>
+            <option value="template-pautang">Add to a pautang (template)</option>
           </optgroup>
         </select>
         <span class="select-caret">▾</span>
@@ -9372,18 +9293,16 @@
 
   // -------------------------------------------------------------------------
   // DEV OFFLINE MODE — when true, Supabase is bypassed entirely. All data
-  // lives in localStorage on this device. No login needed; app opens straight
-  // to the dashboard. Trade-off: no cloud sync, no multi-device, data is
-  // tied to this browser profile. Export regular backups via Profile →
-  // Export all data. Flip to false to switch back to real Supabase + login.
+  // lives in localStorage on this device. Use this for fast iteration without
+  // any network dependency. Flip to false to persist to real Supabase.
   // -------------------------------------------------------------------------
-  const DEV_OFFLINE_MODE = true;
+  const DEV_OFFLINE_MODE = false;
   const DEV_LOCAL_KEY    = 'silak-salapi-local-user';
 
   // Bumped on every deploy — used by the update-checker to detect when a
   // newer HTML has landed on GitHub Pages so users can refresh without
   // force-closing the PWA. Format: YYYY-MM-DD.NN (NN increments per day).
-  const APP_VERSION = '2026-08-10.69';
+  const APP_VERSION = '2026-08-10.65';
 
   const REMEMBER_KEY = 'silak-salapi-last-email';      // client-only, pre-fills email on login
 
@@ -13149,10 +13068,43 @@
     });
   }
 
-  // Net Worth footer — removed from Home as part of nav simplification.
-  // Kept as a no-op so any legacy caller sites don't crash. Net Worth now
-  // lives inside Pitaka via the Cash + Credit section totals.
-  function renderNetWorthFooter(_user) { /* removed */ }
+  // Net Worth footer — big final card
+  function renderNetWorthFooter(user) {
+    const card = document.getElementById('nwFooterCard');
+    const hasWallets = (user.wallets || []).length > 0;
+    const hasAssets  = (user.assets  || []).length > 0;
+    const hasLoans   = (user.loans   || []).length > 0;
+    if (!hasWallets && !hasAssets && !hasLoans) { card.style.display = 'none'; return; }
+    card.style.display = 'block';
+
+    const nw = computeNetWorth(user);
+    const valEl = document.getElementById('nwfVal');
+    valEl.textContent = peso(nw.netWorth);
+    valEl.classList.toggle('negative', nw.netWorth < 0);
+
+    document.getElementById('nwfAssets').textContent = peso(nw.totalAssets);
+    document.getElementById('nwfLiab').textContent   = peso(nw.totalLiabilities);
+
+    // Delta vs last month + sparkline
+    const history = computeNetWorthHistory(user, 6);
+    const deltaEl = document.getElementById('nwfDelta');
+    deltaEl.classList.remove('up', 'down');
+    if (history.length >= 2) {
+      const change = history[history.length - 1].netWorth - history[history.length - 2].netWorth;
+      if (Math.abs(change) < 1) {
+        deltaEl.textContent = 'Steady vs last month';
+      } else if (change > 0) {
+        deltaEl.textContent = `↑ ${peso(change)} vs last month`;
+        deltaEl.classList.add('up');
+      } else {
+        deltaEl.textContent = `↓ ${peso(Math.abs(change))} vs last month`;
+        deltaEl.classList.add('down');
+      }
+    } else {
+      deltaEl.textContent = 'Tap for breakdown';
+    }
+    drawSparkline(document.getElementById('nwfSpark'), history.map(p => p.netWorth));
+  }
 
   // ===================== QUICK ACTIONS SYSTEM =====================
   // User-customizable shortcuts at the top of Home. Data lives on
@@ -13277,8 +13229,11 @@
         case 'savings':
           showSavingsView(freshUser);
           break;
-        case 'wallets':
-          showWalletsScreen(freshUser);
+        case 'loans':
+          showLoansScreen(freshUser);
+          break;
+        case 'assets':
+          showNetWorth(freshUser);
           break;
         default:
           openTransactionScreen(freshUser, {});
@@ -13541,7 +13496,8 @@
         case 'transaction': return qa.prefill?.type === 'transfer' ? 'Opens the transfer form' : 'Opens the transaction form';
         case 'coming-up':   return 'Opens the Coming Up sheet';
         case 'savings':     return 'Opens the Ipon screen';
-        case 'wallets':     return 'Opens Pitaka (wallets)';
+        case 'loans':       return 'Opens the Loans screen';
+        case 'assets':      return 'Opens the Net Worth screen';
         default:            return 'Opens a screen';
       }
     }
@@ -13551,6 +13507,7 @@
         case 'income':   return `Logs income${qa.defaultAmount ? ' of ' + peso(qa.defaultAmount) : ' (prompts for amount)'}`;
         case 'saving':   return `Adds to a savings goal${qa.defaultAmount ? ' — ' + peso(qa.defaultAmount) : ''}`;
         case 'transfer': return `Transfers between wallets${qa.defaultAmount ? ' — ' + peso(qa.defaultAmount) : ''}`;
+        case 'pautang':  return `Adds to a pautang${qa.defaultAmount ? ' — ' + peso(qa.defaultAmount) : ''}`;
       }
     }
     return 'Shortcut';
@@ -18886,10 +18843,25 @@
     `;
   }
 
-  // Smart Insights card was removed from Home as part of nav simplification.
-  // Keep the renderer as a no-op so any legacy caller sites don't crash. The
-  // underlying computeInsights() stays in case we re-surface it elsewhere.
-  function renderInsights(_user) { /* removed */ }
+  // =========================================================================
+  // SMART INSIGHTS — auto-computed observations shown on home
+  // =========================================================================
+  function renderInsights(user) {
+    const card = document.getElementById('insightsCard');
+    const list = document.getElementById('insightsList');
+    const items = computeInsights(user);
+    if (items.length === 0) { card.style.display = 'none'; return; }
+    list.innerHTML = items.map(it => `
+      <div class="insight-item">
+        <div class="insight-icon ${it.tone}">${it.icon}</div>
+        <div class="insight-body">
+          <p class="insight-title">${it.title}</p>
+          ${it.sub ? `<p class="insight-sub">${it.sub}</p>` : ''}
+        </div>
+      </div>
+    `).join('');
+    card.style.display = 'block';
+  }
 
   // Returns 0-3 highest-priority insights derived from the user's data
   function computeInsights(user) {
@@ -19699,84 +19671,8 @@
       totalVal.textContent = peso(total);
       banner.style.display = 'block';
     }
-
-    // ===== CREDIT SECTION =====
-    // Shows payable loans (SPayLater, credit cards, personal loans). Pautangs
-    // (receivables) are intentionally excluded — those are a separate feature
-    // that was removed. Tapping a credit tile opens the loan detail view.
-    const creditList = document.getElementById('creditList');
-    const cashHead   = document.getElementById('cashSectionHead');
-    const creditHead = document.getElementById('creditSectionHead');
-    const addCredit  = document.getElementById('addCreditBtn');
-    creditList.innerHTML = '';
-    const allLoans = Array.isArray(user.loans) ? user.loans : [];
-    const payables = allLoans.filter(l =>
-      (l.direction || 'payable') === 'payable' && l.status !== 'closed' && l.status !== 'paid' && l.status !== 'cleared'
-    );
-    const hasWallets = wallets.length > 0;
-    const hasCredit = payables.length > 0;
-    // Show "Cash accounts" header only when both sections exist (saves space
-    // when the user only has one or the other).
-    cashHead.style.display = (hasWallets && hasCredit) ? '' : 'none';
-    creditHead.style.display = hasCredit ? '' : 'none';
-    addCredit.style.display = hasWallets || hasCredit ? '' : 'none';
-    // Update section totals
-    if (hasWallets && hasCredit) {
-      const cashTotal = wallets.reduce((s, w) => s + computeWalletBalance(w, txs), 0);
-      document.getElementById('cashSectionTotal').textContent = peso(cashTotal);
-    }
-    if (hasCredit) {
-      let creditTotal = 0;
-      payables.forEach(l => {
-        const bal = l.isRevolving ? computeRevolvingBalance(l, txs) : (Number(l.currentBalance) || 0);
-        creditTotal += bal;
-        const limit = Number(l.creditLimit) || 0;
-        const utilPct = (l.isRevolving && limit > 0) ? Math.min(100, (bal / limit) * 100) : null;
-        const minPay = l.isRevolving ? computeMinPayment(l, txs) : (Number(l.monthlyPayment) || 0);
-        const dueStr = l.dueDate
-          ? new Date(l.dueDate + 'T00:00:00').toLocaleDateString('en-PH', { month: 'short', day: 'numeric' })
-          : (l.dueDay ? `due ${l.dueDay}` : '');
-        const subLine = [
-          l.lender ? escapeAttr(l.lender) : '',
-          l.isRevolving ? 'Revolving' : (LOAN_LABEL[l.type] || l.type || 'Loan'),
-        ].filter(Boolean).join(' · ');
-        const tile = document.createElement('div');
-        tile.className = 'credit-tile';
-        tile.innerHTML = `
-          <div class="head">
-            <div class="icon">${LOAN_ICON[l.type] || '💳'}</div>
-            <div style="flex:1; min-width:0;">
-              <div class="name">${escapeAttr(l.name || LOAN_LABEL[l.type] || 'Credit')}</div>
-              <div class="sub">${subLine}</div>
-            </div>
-          </div>
-          <div class="balance-row">
-            <div class="amt">${peso(bal)}</div>
-            ${minPay > 0 ? `<div class="min">Min ${peso(minPay)}${dueStr ? ' · ' + dueStr : ''}</div>` : ''}
-          </div>
-          ${utilPct !== null ? `
-            <div class="util-bar"><div style="width:${utilPct.toFixed(1)}%"></div></div>
-            <div class="util-label">
-              <span>${utilPct.toFixed(0)}% of ${peso(limit)}</span>
-              <span>${peso(Math.max(limit - bal, 0))} available</span>
-            </div>
-          ` : ''}
-        `;
-        tile.addEventListener('click', () => showEntryDetail(userCache, 'loan', l.id));
-        creditList.appendChild(tile);
-      });
-      document.getElementById('creditSectionTotal').textContent = peso(creditTotal);
-      document.getElementById('creditSectionTotal').classList.add('credit');
-    }
-
     goto('wallets');
   }
-
-  // Add credit — opens the loan edit form in "payable" mode. Reuses the
-  // loan edit screen that was built for the (now removed) Utang/Pautang screen.
-  document.getElementById('addCreditBtn').addEventListener('click', () => {
-    openLoanEdit(userCache, null, 'payable');
-  });
 
   function openWalletEdit(user, walletId) {
     userCache = user;
@@ -20871,16 +20767,11 @@
     payLbl.textContent = isReceivable ? `Expected ${freqLabel.toLowerCase()} repayment` : `${freqLabel} payment`;
   }
 
-  function openLoanEdit(user, loanId, direction) {
+  function openLoanEdit(user, loanId) {
     userCache = user;
     editingLoanId = loanId || null;
     const isEditing = !!loanId;
     const existing = isEditing ? (user.loans || []).find(l => l.id === loanId) : null;
-    // Set the pending direction so saveLoanBtn uses it. For new loans added
-    // from Wallets' Credit section, this is always 'payable' (utang/credit).
-    // The old pautang (receivable) flow is removed — direction stays whatever
-    // was already on an existing record so legacy pautangs aren't converted.
-    if (!isEditing) pendingLoanDirection = direction || 'payable';
 
     const typeSel = document.getElementById('loanTypeSelect');
     typeSel.innerHTML = LOAN_TYPES.map(t => `<option value="${t.v}">${t.icon} ${t.label}</option>`).join('');
